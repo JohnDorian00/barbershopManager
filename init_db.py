@@ -1,16 +1,17 @@
-import sqlite3
+def init():
+    import sqlite3
 
-connection = sqlite3.connect('db.sqlite')
+    connection = sqlite3.connect('db.sqlite')
 
-cur = connection.cursor()
+    cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('First Post', 'Content for the first post')
-            )
+    cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+                ('First Post', 'Content for the first post')
+                )
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
-            )
+    cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+                ('Second Post', 'Content for the second post')
+                )
 
-connection.commit()
-connection.close()
+    connection.commit()
+    connection.close()

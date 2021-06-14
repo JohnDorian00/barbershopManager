@@ -2,9 +2,16 @@ import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 import git
+import init_db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdasfsgdf'
+
+
+@app.route('/init_db')
+def webhook():
+    init_db.init()
+    return render_template('index.html')
 
 
 @app.route('/update_server', methods=['POST'])
@@ -25,7 +32,6 @@ def index():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
-
     return render_template('index.html', posts=posts)
 
 
