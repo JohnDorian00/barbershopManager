@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = 'asdasfsgdf'
 
 
 @app.route('/init_db')
-def webhook():
+def initdb():
     init_db.init()
     return render_template('index.html')
 
